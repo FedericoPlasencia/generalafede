@@ -24,7 +24,31 @@ void juego1jugador();
 void juego2jugadores();
 void dados();
 void recuadro();
+int funciondepuntaje(int);
 
+int funciondepuntaje(int contador[6]){
+int i;int puntos=0;int acu=0; int contadordeescalera=0;
+bool b2,b3=false;
+for(i=0;i<6;i++){
+if (contador[i]==5){
+    puntos=50;}
+else if(contador[i]==4){
+        puntos=40;}
+else if(contador[i]==3){
+        b3=true;puntos=(i+1)*3;}
+else if(contador[i]==2){
+        b2=true;puntos=(i+1)*2;}
+else if(contador[i]==1){
+        contadordeescalera++; puntos=i+1; }
+else if(contadordeescalera!=5 && contadordeescalera !=0) {
+        contadordeescalera--;}
+}
+if (b2==true && b3==true){puntos=30;}
+if(contadordeescalera==5){puntos=25;}
+acu+=puntos;
+
+return acu;
+}
 
 
 void recuadro(){
@@ -102,7 +126,7 @@ void juego1jugador(){
 
         cin.getline(jugador,25);
         rlutil::locate(5,10);
-        cout<< "¡A comenzar a jugar!";
+        cout<< "Â¡A comenzar a jugar!";
         rlutil::locate(1,20);
         system("pause");
         system("cls");
@@ -256,7 +280,7 @@ void juego2jugadores(){
     cin.getline(jugador1,25);
     cout<<"INGRESE NOMBRE DEL JUGADOR 2: "<<endl;
     cin.getline(jugador2,25);
-    cout<< "¡A comenzar a jugar!"<<endl;
+    cout<< "Â¡A comenzar a jugar!"<<endl;
     cout<< "Presione enter para continuar...";
     system("pause");
     cout<<endl;
@@ -265,9 +289,9 @@ void juego2jugadores(){
 while (ronda!=11){
     while (lanzamiento!=3){
         cout<<"Turno de "<<jugador1<<endl;
-        cout<<"Ronda n° "<<ronda<<endl;
+        cout<<"Ronda nÂ° "<<ronda<<endl;
         cout<<"Puntaje de "<<jugador1<<": "<<puntajeTotal1<<endl;
-        cout<<"Lanzamiento n° "<<lanzamiento<<endl;
+        cout<<"Lanzamiento nÂ° "<<lanzamiento<<endl;
         cout<<endl;
         cout<<endl;
         cout<< "Presione enter para tirar los dados...";
@@ -281,20 +305,20 @@ while (ronda!=11){
         cout<<endl;
 
         while (lanzamiento!=3){
-            cout<<"¿Continuar lanzando?: "<<endl;
+            cout<<"Â¿Continuar lanzando?: "<<endl;
             cin>>continuarLanzando;
             switch (continuarLanzando){
             case 'S':
             case 's':
                 lanzamiento++;
-                cout<<"¿Cuántos dados desea volver a lanzar?: "<<endl;
+                cout<<"Â¿CuÃ¡ntos dados desea volver a lanzar?: "<<endl;
                 cin>>tam;
                 if (tam==5){
                     tirarDados(vecDados, tam);
                 }
                 else {
                     for (i=0;i<tam;i++){
-                        cout<<"¿Cuál dado?: "<<endl;
+                        cout<<"Â¿CuÃ¡l dado?: "<<endl;
                         cin>>cualDado;
                         switch (cualDado) {
                             case 1:
@@ -322,7 +346,7 @@ while (ronda!=11){
                     }
                     mostrarDados(vecDados, 5);
                     cout<<endl;
-                    cout<<"Lanzamiento n° "<<lanzamiento<<endl;
+                    cout<<"Lanzamiento nÂ° "<<lanzamiento<<endl;
                     cout<<endl;
                     tam=5;
             break;
@@ -345,12 +369,12 @@ while (ronda!=11){
 
         cout<< "Fin del turno de "<<jugador1<<endl;
         cout<<endl;
-        cout<<"Ronda n° "<<ronda<<endl;
+        cout<<"Ronda nÂ° "<<ronda<<endl;
         cout<<"Puntaje de la ronda de "<<jugador1<<": "<<puntajeRonda<<endl;
         cout<<"Puntaje total de "<<jugador1<<": "<<puntajeTotal1<<endl;
         cout<<"Puntaje total de "<<jugador2<<": "<<puntajeTotal2<<endl;
         cout<<endl;
-        cout<<"Próximo turno de "<<jugador2<<endl;
+        cout<<"PrÃ³ximo turno de "<<jugador2<<endl;
 
         cout<< "Presione enter para continuar...";
         cin.ignore();
@@ -365,9 +389,9 @@ while (ronda!=11){
 
         while (lanzamiento!=3){
         cout<<"Turno de "<<jugador2<<endl;
-        cout<<"Ronda n° "<<ronda<<endl;
+        cout<<"Ronda nÂ° "<<ronda<<endl;
         cout<<"Puntaje de "<<jugador2<<": "<<puntajeTotal2<<endl;
-        cout<<"Lanzamiento n° "<<lanzamiento<<endl;
+        cout<<"Lanzamiento nÂ° "<<lanzamiento<<endl;
         cout<<endl;
         cout<<endl;
         cout<< "Presione enter para tirar los dados...";
@@ -379,20 +403,20 @@ while (ronda!=11){
         cout<<endl;
         cout<<endl;
         while (lanzamiento!=3){
-            cout<<"¿Continuar lanzando?: "<<endl;
+            cout<<"Â¿Continuar lanzando?: "<<endl;
             cin>>continuarLanzando;
             switch (continuarLanzando){
             case 'S':
             case 's':
                 lanzamiento++;
-                cout<<"¿Cuántos dados desea volver a lanzar?: "<<endl;
+                cout<<"Â¿CuÃ¡ntos dados desea volver a lanzar?: "<<endl;
                 cin>>tam;
                 if (tam==5){
                     tirarDados(vecDados, tam);
                 }
                 else {
                     for (i=0;i<tam;i++){
-                        cout<<"¿Cuál dado?: "<<endl;
+                        cout<<"Â¿CuÃ¡l dado?: "<<endl;
                         cin>>cualDado;
                         switch (cualDado) {
                             case 1:
@@ -420,7 +444,7 @@ while (ronda!=11){
                     }
                     mostrarDados(vecDados, 5);
                     cout<<endl;
-                    cout<<"Lanzamiento n° "<<lanzamiento<<endl;
+                    cout<<"Lanzamiento nÂ° "<<lanzamiento<<endl;
                     cout<<endl;
                     tam=5;
             break;
@@ -440,12 +464,12 @@ while (ronda!=11){
         }
             cout<< "Fin del turno de "<<jugador2<<endl;
             cout<<endl;
-            cout<<"Fin de la ronda n° "<<ronda<<endl;
+            cout<<"Fin de la ronda nÂ° "<<ronda<<endl;
             cout<<"Puntaje de la ronda de "<<jugador2<<": "<<puntajeRonda<<endl;
             cout<<"Puntaje total de "<<jugador1<<": "<<puntajeTotal1<<endl;
             cout<<"Puntaje total de "<<jugador2<<": "<<puntajeTotal2<<endl;
             cout<<endl;
-            cout<<"Próximo turno de "<<jugador1<<endl;
+            cout<<"PrÃ³ximo turno de "<<jugador1<<endl;
 
             cout<< "Presione enter para continuar...";
             system("pause");

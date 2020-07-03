@@ -1,147 +1,73 @@
-#include <clocale>
-
-#include<cstdlib>
-
-#include<cstdio>
-
-#include<ctime>
-
-#include<ctype.h>
-
-#include<cstring>
-
-#include"FUNCIONES_GENERALA.H"
-
-#include <iostream>
-
-#include "rlutil.h"
-
 using namespace std;
-
-
-
-
-
 
 
 int main(){
 
-
-
-int  vecDados[6], opcion, ronda=1, puntajeTotal1=0, puntajeTotal2=0, puntajeMaximo=0;
-
-int puntajeRonda=0, lanzamiento1=1, lanzamiento2=1;
-
-char ganador[25], jugador1[25], jugador2[25], continuarLanzando;
-
-const int tam=5;
-
-
-
-rlutil::setBackgroundColor(rlutil::MAGENTA);
-rlutil::setColor(rlutil::WHITE);
-
+int  opcion, puntajeMaximo=0, puntaje1, puntaje2;
+bool bandjuego1=false;
 
 
 while(true){
-
-rlutil::locate(3,2);
-cout<<"-----------------------------------------";
-rlutil::locate(3,3);
-cout<<"   BIENVENIDO AL JUEGO DE LA GENERALA    ";
-rlutil::locate(3,4);
-cout<<"-----------------------------------------";
- dados();
-
-rlutil::locate(3,20);
-system ("pause");
-
-
-    system("cls");
-    rlutil::locate(20,3);
-    cout<<"MENU DEL JUEGO";
-
-    rlutil::locate(5,5);
-    cout<<"-------------------------------------------";
-
-    rlutil::locate(5,6);
-    cout<<"1- JUEGA UN JUGADOR ";
-
-    rlutil::locate(5,8);
-    cout<<"2- JUEGAN DOS JUGADORES ";
-
-    rlutil::locate(5,10);
-    cout<<"3- PUNTACION MAS ALTA";
-
-    rlutil::locate(5,12);
-    cout<<"4- SALIR";
-
-    rlutil::locate(5,14);
+rlutil::locate(6,6);
+cout<<"BIENVENIDO AL JUEGO DE LA GENERALA ";
+rlutil::locate(1,13);
+system("pause");
+system("cls");
+    cout<<"MENU DEL JUEGO"<<endl;
+    cout<<"1- JUEGO NUEVO: UN JUGADOR "<<endl;
+    cout<<"2- JUEGO NUEVO: DOS JUGADORES "<<endl;
+    cout<<"3- PUNTUACION MAS ALTA"<<endl;
+    cout<<"4- SALIR"<<endl;
     cout<<"ELIJA UNA OPCION: ";
     cin>>opcion;
-
-    system("cls");
-
-
-
+    system("pause");
+    rlutil::cls();
 
     switch(opcion){
 
+        case 1:
+            puntaje1=juego1jugador();
+            if (bandjuego1==false){
+                puntajeMaximo=puntaje1;
+            }
+            else {
+                if (puntaje1>puntajeMaximo){
+                    puntajeMaximo=puntaje1;
+                }
+            }
+            bandjuego1=true;
 
-
-        case 1: //aca podria ir la funcion juego de 1
-            juego1jugador();
             break;
 
+        case 2:
+            puntaje2=juego2jugadores();
+            if (bandjuego1==false){
+                puntajeMaximo=puntaje2;
+            }
+            else {
+                if (puntaje1>puntajeMaximo){
+                    puntajeMaximo=puntaje2;
+                }
+            }
+            bandjuego1=true;
 
+            break;
 
-            case 2:
+        case 3:
+            cout<<"La puntuación más alta es de: "<<puntajeMaximo<<endl;
+            break;
 
-                rlutil::locate(5,2);
-                cout<<"---------------------------------------------";
-                rlutil::locate(25,3);
-                cout<<" COMENZAMOS! ";
-                rlutil::locate(5,4);
-                cout<<"---------------------------------------------";
+        case 4:
+            return 0;
+            break;
 
-                 juego2jugadores();
-
-
-
-
-
-                break;
-
-
-
-            case 3:
-
-                cout<<"Puntuaci�n m�s alta: "<<puntajeMaximo<<endl;
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 4:
-
-                return 0;
-
-                break;
-
-
-
-
+        default:
+            rlutil::cls();
+            cout<<"Opción es incorrecta. Por favor ingrese enter y vuelva a ingresar una opción..."<<endl;
+            rlutil::anykey();
+            rlutil::cls();
+            break;
 
         }
-
     }
-
-
-
 }
